@@ -1,8 +1,12 @@
 from django.db import models
 
 
-class UserManager(models.Manager):
-    def add_name(self, name):  # self - model
-        user = self.create(name=name)
-        user.save()
-        return user.pk
+class NameManager(models.Manager):
+    def add_name(self, enter_name):  # self - model
+        name = self.create(name=enter_name)
+        name.save()
+        return name.pk
+
+    def delete_name(self, enter_name):
+        name = self.filter(name=enter_name).first()
+        name.delete()
