@@ -1,0 +1,51 @@
+body{
+    background: rgba(234, 234, 234, 0.8);
+    background-image: url("http://luxfon.com/images/201203/luxfon.com_6614.jpg");
+}
+
+
+
+form{
+    width:300px;
+    height:200px;
+    margin:0 auto;
+    border: #d6d0ff;
+}
+
+.flex-container{
+
+    display: flex;
+    text-align: center;
+    margin-left: 300px;
+    margin-top: 100px;
+    position: absolute;
+    padding-left: 20px;
+    padding-top: 40px;
+    padding-right: 20px;
+    border: solid 0px #abb2b2;
+    background-color: #abb2b2;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(86, 86, 86, 0.93);
+
+}
+
+.flex-block{
+    flex-direcrion:row;
+    flex-wrap: wrap;
+}
+
+.names_list {
+    text-align: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(86, 86, 86, 0.93);
+    width: 221px;
+
+}
+
+.show_names {
+    text-align: center;
+    width: 221px;
+
+}

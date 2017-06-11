@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EVO test task</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-block add">
+        <form class="form-group add" method="post" action="{% url 'name:add' %}">
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Добавить</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="name" id="name"
+                                   placeholder="Введите имя" value="{{ form.name.value }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <button class="btn btn-default regbutton">ОК</button>
+                </div>
+        </form>
+        </div>
+        <div class="flex-block del">
+        <form class="form-group del" method="post" action="{% url 'name:del' %}">
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Удалить</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="name" id="name"
+                                   placeholder="Введите имя" value="{{ form.name.value }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-default regbutton">ОК</button>
+                </div>
+        </form>
+        </div>
+    </div>
+    <div class="show_names">
+        <a href="{% url 'name:get_random_names' %}">
+        <button class="btn btn-default regbutton">Показать список победителей</button>
+        </a>
+        <div class="names_list" style="display: none">
+        </div>
+        <button class="hide_names btn btn-default regbutton" style="display: none">Скрыть</button>
+    </div>
+
+    <script>
+        $('.flex-block.add button').click(function(e)
+    {
+        e.preventDefault();
+        var send_data = {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'name': $('.flex-block.add .form-group.add input[name="name"]').val()
+        };
+        $.post('/name/add/', send_data, function (data) {
+            console.log(data);
+            if(data.result){
+                alert('Имя добавлено :)');
+            }
+            else {
+                console.log(data.errors);
+                alert(data.errors.name[0])
+            }
+            $('.flex-block.add .form-group.add input[name="name"]').val('')
+
+        });
+
+    });
+
+    $('.flex-block.del button').click(function(e)
+    {
+        e.preventDefault();
+        var send_data = {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'name': $('.flex-block.del .form-group.del input[name="name"]').val()
+        };
+        $.post('/name/del/', send_data, function (data)
+        {
+            console.log(data);
+            if(data.result)
+            {
+                alert('Имя удалено :)');
+            }
+            else {
+                console.log(data.errors);
+                alert(data.errors.name[0])
+            }
+            $('.flex-block.del .form-group.del input[name="name"]').val('')
+
+        });
+
+    });
+
+    $('.show_names button').click(function(e)
+        {
+            e.preventDefault();
+
+            $('.hide_names').show();
+            $('.names_list ').text('').show();
+            $.get('/name/get_random_names/', function(data)
+            {
+                for (var i = 0; i < data.names.length; i++)
+                {
+                    var name = data.names[i];
+                    $('.names_list').append("<p>"+name+"</p>");
+                }
+            });
+
+
+        });
+    $('.hide_names ').click(function (e) {
+
+        e.preventDefault();
+        $('.names_list ').hide();
+        $('.hide_names').hide();
+
+    });
+    </script>
+</body>
+</html>
