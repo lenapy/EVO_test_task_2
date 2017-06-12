@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 # import random
 from django.http import JsonResponse
-from django import forms
 
 from test_app.models import User
 from test_app.forms import AddNameForm, DeleteNameForm
@@ -58,3 +57,4 @@ def get_random_names(request):
     #     if name:
     #         names.append(name)
     return JsonResponse({'result': True, 'names': names_list})
+

@@ -25,3 +25,4 @@ class DeleteNameForm(forms.Form):
         if not User.objects.filter(name=cap_name).first():
             raise forms.ValidationError("Имя %s, не было добавлено" % name)
         return name
+

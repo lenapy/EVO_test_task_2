@@ -3,8 +3,6 @@ body{
     background-image: url("http://luxfon.com/images/201203/luxfon.com_6614.jpg");
 }
 
-
-
 form{
     width:300px;
     margin:0 auto;
@@ -26,11 +24,9 @@ form{
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.93);
     width: 650px;
     height:200px;
-
 }
 
 .flex-block{
-    /*flex-direcrion:center;*/
     flex-direcrion:row;
     flex-wrap: wrap;
 }
@@ -42,7 +38,6 @@ form{
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.93);
     width: 221px;
-
 }
 
 .show_names {
@@ -51,5 +46,4 @@ form{
     position: absolute;
     margin-top: 310px;
     margin-left: 510px;
-
 }
