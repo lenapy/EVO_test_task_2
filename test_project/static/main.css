@@ -7,13 +7,11 @@ body{
 
 form{
     width:300px;
-    height:200px;
     margin:0 auto;
     border: #d6d0ff;
 }
 
 .flex-container{
-
     display: flex;
     text-align: center;
     margin-left: 300px;
@@ -26,10 +24,13 @@ form{
     background-color: #abb2b2;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.93);
+    width: 650px;
+    height:200px;
 
 }
 
 .flex-block{
+    /*flex-direcrion:center;*/
     flex-direcrion:row;
     flex-wrap: wrap;
 }
@@ -47,5 +48,8 @@ form{
 .show_names {
     text-align: center;
     width: 221px;
+    position: absolute;
+    margin-top: 310px;
+    margin-left: 510px;
 
 }

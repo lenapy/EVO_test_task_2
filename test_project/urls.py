@@ -6,5 +6,7 @@ from test_app import views
 
 urlpatterns = [url(r'^admin/', include(admin.site.urls)),
                url(r'^name/', include(name_urls, namespace='name')),
-               url(r'^main/', views.main, name='main')]
+               url(r'^main/', views.main, name='main'),
+               url(r'', views.index, name='')]
+
 

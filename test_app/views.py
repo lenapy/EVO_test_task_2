@@ -7,6 +7,10 @@ from test_app.models import User
 from test_app.forms import AddNameForm, DeleteNameForm
 
 
+def index(request):
+    return redirect('main')
+
+
 def main(request):
     return render(request, 'main.html')
 
