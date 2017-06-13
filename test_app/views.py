@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-# import random
+import random
 from django.http import JsonResponse
 
 from test_app.models import User
@@ -47,14 +47,20 @@ def get_random_names(request):
     names_list = []
     for names_data in names_dict:
         names_list.append(names_data['name'])
-    # names_list = random.sample(list(User.objects.values_list('name')), 3)
-    # count = User.objects.count()
-    #
-    # names = []
-    # while len(names) < 3:
-    #     name_id = random.randint(1, count)
-    #     name = User.objects.filter(id=name_id).first()
-    #     if name:
-    #         names.append(name)
     return JsonResponse({'result': True, 'names': names_list})
 
+
+def get_random_names_variant_2(request):
+    count = User.objects.count()
+    names_list = []
+    while len(names_list) < 3:
+        name_id = random.randint(1, count)
+        name = User.objects.filter(id=name_id).first()
+        if name:
+            names_list.append(name)
+    return JsonResponse({'result': True, 'names': names_list})
+
+
+def get_random_names_variant_3(request):
+    names_list = random.sample(list(User.objects.values_list('name')), 3)
+    return JsonResponse({'result': True, 'names': names_list})
